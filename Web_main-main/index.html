@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kokoria - Chicken & Cheese</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+          sans-serif;
+        background-color: #fff5e6;
+        color: #333;
+      }
+      body,
+      html {
+        height: 100%;
+        overflow-y: auto;
+      } 
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background: white;
+        position: relative;
+      }
+
+      /* Login Page Styles */
+      .login-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* căn giữa ngang */
+        justify-content: center;
+        min-height: 100vh;
+        background: #fff5e6;
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .logo {
+        margin-bottom: 40px;
+      }
+
+      .logo h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .logo p {
+        color: #999;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+      }
+
+      .login-form h2 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      .phone-input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: white;
+      }
+
+      .phone-input:focus {
+        outline: none;
+        border-color: #ff6b35;
+      }
+
+      .continue-btn {
+        width: 100%;
+        padding: 15px;
+        background: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      .continue-btn:hover {
+        background: #e55a2b;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 20px 0;
+        color: #999;
+      }
+
+      .social-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .google-btn {
+        background: #ff6b35;
+        color: white;
+      }
+
+      .apple-btn {
+        background: #ff6b35;
+        color: white;
+      }
+
+      .facebook-btn {
+        background: #ff6b35;
+        color: white;
+      }
+
+      .terms {
+        font-size: 0.8rem;
+        color: #999;
+        margin-top: 20px;
+        line-height: 1.4;
+      }
+
+      .terms a {
+        color: #4a90e2;
+        text-decoration: none;
+      }
+
+      /* Home Page Styles */
+      .home-page {
+        display: none;
+        background: white;
+        padding-bottom: 80px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-icon {
+        width: 35px;
+        height: 35px;
+        background: #ff6b35;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      .search-bar {
+        padding: 1px 1px;
+        background: linear-gradient(135deg, #fff5e6, #ffebdb);
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px dashed #4a90e2;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: #f8f9fa;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #ff6b35;
+      }
+
+      .hero-section {
+        padding: 20px;
+        text-align: center;
+        background: linear-gradient(135deg, #fff5e6, #ffebdb);
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+        color: #ff6b35;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      .menu-btn {
+        background: #ffd93d;
+        color: #333;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      .image-stack {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        height: 200px;
+        margin: 0 auto;
+      }
+      .stack-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+      .img1 {
+        top: 0;
+        left: auto;
+        right: -40px;
+        z-index: 1;
+        transform: scale(1);
+      }
+
+      .img2 {
+        top: 80px;
+        left: auto;
+        right: -150px;
+        z-index: 3;
+        transform: scale(0.5);
+      }
+
+      .img3 {
+        top: 80px;
+        left: -40px;
+        z-index: 2;
+        transform: scale(0.5);
+      }
+
+      .contact-section {
+        padding: 20px;
+        background: #fff5e6;
+      }
+
+      .contact-title {
+        font-size: 1.3rem;
+        color: #ff6b35;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+      }
+
+      .contact-icon {
+        width: 20px;
+        height: 20px;
+        background: #ff6b35;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.8rem;
+      }
+
+      .hours-section {
+        padding: 20px;
+        background: #fff5e6;
+      }
+
+      .box-title {
+        display: inline-block;
+        background-color: #ffe29a; /* Màu nền vàng nhạt */
+        color: #ff6b35; /* Màu chữ cam */
+        font-weight: bold;
+        padding: 8px 20px;
+        border-radius: 30px; /* Bo tròn */
+        font-size: 1rem;
+        font-family: sans-serif;
+      }
+
+      .hours-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .location-icon {
+        width: 20px;
+        height: 20px;
+        background: #ff6b35;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.8rem;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 400px;
+        background: white;
+        display: none;
+        justify-content: space-evenly;
+        padding: 10px 0;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        color: #ff6b35;
+        text-decoration: none;
+        font-size: 0.8rem;
+      }
+
+      .back-btn {
+        background: hsl(17, 14%, 58%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 20px;
+      }
+
+      .back-btn:hover {
+        background: #e55a2b;
+      }
+      /* Menu Page Styles */
+      .menu-page {
+        display: none;
+        background: #f9f2ea;
+        height: calc(100vh - 60px); /* Sửa lại, trừ chiều cao bottom-nav */
+        flex-direction: column;
+        overflow: auto;
+      }
+
+      .menu-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .menu-header h1 {
+        position: absolute;
+        left: 55%;
+        transform: translateX(-50%);
+      }
+      
+      .menu-logo {
+        width: 90px;
+        height: auto;
+      }
+
+      .menu-logo img {
+        width: 90px;
+        height: auto;
+      }
+
+      .menu-back-btn {
+        background: none;
+        border: none;
+        color: #ff6b35;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 5px;
+      }
+      .header-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .menu-profile-icon {
+        font-size: 1.4rem;
+        color: #ff6b35;
+      }
+
+      .banner img {
+        width: 100%;
+        display: block;
+        height: 120px;
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 12px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #ffd93d, #ff6b35);
+      }
+
+      .section {
+        margin-top: 16px;
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+        color: #ff6b35;
+        padding: 0 16px;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding: 0 16px;
+      }
+
+      .carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .carousel .card {
+        flex: 0 0 60%;
+        scroll-snap-align: start;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        text-align: left;
+      }
+
+      .card img {
+        width: 80%;
+        max-height: 80px;
+        object-fit: contain;
+        display: block;
+        margin: 8px auto 0;
+        background: #f8f8f8;
+        border-radius: 8px;
+      }
+
+      .card .info {
+        padding: 8px;
+      }
+
+      .card .info h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+        position: relative;
+      }
+
+      /* Áp Coiny chỉ cho tên món */
+      .card .info h3 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Phần size (M/L, S/M/L, 3 pcs…) giữ font mặc định */
+      .card .info h3 .size-note {
+        font-family: inherit;
+      }
+
+      /* Phần note (dòng mô tả size, flavor…) giữ font mặc định */
+      .card .info .note {
+        font-family: inherit;
+      }
+
+      .card .info h3 .size-note,
+      .card .info .note {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      .card .info h3 .size-note {
+        position: absolute;
+        right: 0;
+        top: 3px;
+        font-size: 0.75rem;
+        font-weight: normal;
+        color: #666;
+        margin-top: 27px;
+      }
+
+      .card .info .note {
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 4px;
+      }
+
+      .card .info .price {
+        font-size: 0.95rem;
+        color: #ff6b35;
+        font-weight: 600;
+      }
+
+      
+      /* Chat Page Styles */
+      .chat-page {
+        display: none;
+        background: #f9f2ea;
+        height: calc(100vh - 60px);
+        flex-direction: column;
+      }
+
+      .chat-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-logo {
+        width: 90px;
+        height: auto;
+      }
+
+      .chat-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #ffeccf;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .chat-banner {
+        background: #ff6b35;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+      .chat-banner-text {
+        font-family: "Arial Black", sans-serif;
+        color: #002244;
+      }
+
+      .chat-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .chat-body::-webkit-scrollbar {
+        display: none;
+      }
+
+      .bot-msg,
+      .user-msg {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .bot-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 10%;
+        object-fit: cover;
+        margin-top: 4px;
+      }
+
+      .bubble {
+        background: white;
+        padding: 6px 14px;
+        border-radius: 18px;
+        max-width: 75%;
+        font-size: 0.95rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-msg {
+        flex-direction: row-reverse;
+      }
+
+      .user-msg .bubble {
+        background: #ffd93d;
+        color: black;
+        margin-right: 10px;
+        border-radius: 18px 18px 4px 18px;
+      }
+
+      .bot-msg .bubble {
+        border-radius: 18px 18px 18px 4px;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: 10px;
+      }
+
+      .options button {
+        padding: 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #ccc;
+        background: white;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+      }
+
+      .options button:hover {
+        background: #f0f0f0;
+      }
+
+      .chat-input {
+        display: flex;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        border-top: 1px solid #eee;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 1rem;
+        background: #fefefe;
+      }
+
+      .chat-input input:focus {
+        outline: none;
+        border-color: #ff6b35;
+      }
+
+      .chat-input button {
+        background: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 14px;
+        margin-left: 10px;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .chat-input button:hover {
+        background: #e55a2b;
+      }
+
+      .chat-action-btn {
+        background: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 16px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: block;
+        width: fit-content;
+      }
+
+      .chat-action-btn:hover {
+        background: #e55a2b;
+      }
+
+      .chat-back-btn {
+        background: none;
+        border: none;
+        color: #ff6b35;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .reservation-page {
+        background: #fff5e6;
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+
+      .reservation-form input,
+      .reservation-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: white;
+      }
+
+      .reservation-form label {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .submit-btn {
+        background: #ff6b35;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 20px;
+        font-size: 1rem;
+        width: 40%;
+      }
+
+      .submit-btn:hover {
+        background: #e55a2b;
+      }
+
+      .chat-link {
+        color: #ff0000;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .chat-choice-btn {
+        color: #222;
+        font-weight: bold;
+        background: none;
+        border: none;
+        padding: 10px 30px;
+        font-size: 1rem;
+        width: 100%;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      /* ===== Homepage ===== */
+      /* Tiêu đề “Home” */
+      #homePage .header h1 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Nút “Menu” trên banner */
+      #homePage .menu-btn {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* “Contact Us” và “We’re Open” */
+      #homePage .contact-section .box-title,
+      #homePage .hours-section .box-title {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* ===== Menu Page ===== */
+      /* Tiêu đề “Menu” */
+      #menuPage .menu-header h1 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Các mục: Signature, Sauced Chicken, Combo, Side Dishes, Drinks */
+      #menuPage .section h2 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Tên tất cả món ăn và nước uống */
+      #menuPage .card .info h3 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* ===== Booking Page ===== */
+      /* Tiêu đề “Reservation” */
+      #reservationPage header h1 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* “Table Reservation Form” */
+      #reservationPage .reservation-form h2 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Các label trong form */
+      #reservationPage .reservation-form label {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Nút “Back to Home” và “Submit” */
+      #reservationPage .reservation-form .back-btn,
+      #reservationPage .reservation-form .submit-btn {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* ===== Chat Page ===== */
+      /* Tiêu đề “Message” */
+      #chatPage .chat-header h1 {
+        font-family: 'Coiny', cursive;
+      }
+
+      /* Logo text “Kokoria” trong khung chat */
+      #chatPage .chat-banner-text {
+        font-family: 'Coiny', cursive;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Login Page -->
+      <div class="login-page" id="loginPage">
+        <img
+          src="img/icon/logo.png"
+          alt="Kokoria Logo"
+          style="width: 250px; height: 250px; margin-bottom: 0px"
+        />
+
+        <div class="login-form">
+          <h2>Create an account</h2>
+
+          <div class="input-group">
+            <input
+              type="tel"
+              class="phone-input"
+              placeholder="Enter your phone number to sign up"
+              id="phoneInput"
+            />
+          </div>
+
+          <button class="continue-btn" onclick="goToHome()">Continue</button>
+
+          <div class="divider">or</div>
+
+          <button class="social-btn google-btn" onclick="goToHome2()">
+            <span></span> Continue with Google
+          </button>
+
+          <button class="social-btn apple-btn" onclick="goToHome2()">
+            <span></span> Continue with Apple
+          </button>
+
+          <button class="social-btn facebook-btn" onclick="goToHome2()">
+            <span></span> Continue with Facebook
+          </button>
+
+          <div class="terms">
+            By clicking continue, you agree to our
+            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Home Page -->
+      <div class="home-page" id="homePage">
+        <div class="header">
+          <img
+            src="img/icon/logo.png"
+            alt="Kokoria Logo"
+            style="width: 100px; height: 100px; margin-bottom: 0px"
+          />
+          <h1
+            style="
+              position: absolute;
+              left: 52%;
+              transform: translateX(-50%);
+              margin: 0;
+            "
+          >
+            Home
+          </h1>
+          <div class="profile-icon">👤</div>
+        </div>
+
+        <div class="hero-section">
+          <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search..." />
+          </div>
+          <h2 class="hero-title">Where Chicken<br />Meets Cheese</h2>
+          <button class="menu-btn" onclick="gotoMenu()">Menu</button>
+          <div class="image-stack">
+            <img src="img/menu/img1.png" class="stack-image img1" />
+            <img src="img/menu/img2.png" class="stack-image img2" />
+            <img src="img/menu/img3.png" class="stack-image img3" />
+          </div>
+        </div>
+
+        <div class="contact-section">
+          <h3 class="box-title">Contact Us</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <a href="https://www.facebook.com/kokoria.sg/?locale=vi_VN" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+                <img src="img/icon/Facebook_Logo_(2019).png.webp" alt="Facebook Icon" style="width: 20px; height: 20px" />
+                <span>Kokoria</span>
+              </a>
+
+              
+            </div>
+            <div class="contact-item">
+              <a href="https://www.instagram.com/kokoria.sg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+                <img src="img/icon/Instagram_icon.png.webp" alt="Instagram Icon" style="width: 20px; height: 20px" />
+                <span>kokoria.sg</span>
+              </a>
+            </div>
+            <div class="contact-item">
+              <img
+                src="img/icon/phone-icon-800x800.png"
+                alt="Phone Icon"
+                class="contact-icon" 
+              />
+              <span>070 879 6719</span>
+            </div>
+          </div>
+        </div>            
+
+        <div class="hours-section">
+          <h3 class="box-title">We're Open</h3>
+          <div class="hours-item">
+            <div class="location-icon">📍</div>
+            <span>207/33 3/2 Street, District 10</span>
+          </div>
+          <div class="hours-item">
+            <div class="location-icon">📍</div>
+            <span>573/2 Su Van Hanh Street, District 10</span>
+          </div>
+          <div class="hours-item">
+            <div class="location-icon">📍</div>
+            <span>106 Le Van Duyet Street, Binh Thanh District</span>
+          </div>
+        </div>
+
+        <button class="back-btn" onclick="goToLogin()">Back to Login</button>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div class="bottom-nav" id = "bottomNav">
+          <a href="#" class="nav-item" onclick="goToHome2()">
+            <img
+              src="img/icon/home.png"
+              alt="Home Icon"
+              style="width: 24px; height: 24px"
+            />
+            <span>Home</span>
+          </a>
+          <a href="#" class="nav-item" onclick="gotoMenu()">
+            <img
+              src="img/icon/Menu.png"
+              alt="Menu Icon"
+              style="width: 24px; height: 24px"
+            />
+            <span>Menu</span>
+          </a>
+          <a href="#" class="nav-item" onclick="goToReservation()">
+            <img
+              src="img/icon/booking.png"
+              style="width: 24px; height: 24px"
+            />
+            <span>Booking</span>
+          </a>
+          <a href="#" class="nav-item" onclick="goToChat()">
+            <img
+              src="img/icon/chat.png"
+              alt="Chat Icon"
+              style="width: 24px; height: 24px"
+            />
+            <span>Chat</span>
+          </a>
+        </div>
+
+      <!-- Chat Page -->
+      <div class="chat-page" id="chatPage">
+        <header class="chat-header">
+          <img src="img/icon/logo.png" alt="Kokoria Logo" class="header-logo" />
+          <h1>Message</h1>
+          <div class="profile-icon">👤</div>
+        </header>
+
+        <div class="chat-wrapper" id="chatWrapper">
+          <div class="chat-banner">
+            <span class="chat-banner-text">Kokoria</span>
+          </div>
+
+          <div class="chat-body" id="chatBody">
+            <!-- Initial bot message -->
+            <div class="bot-msg">
+              <img src="img/icon/logo.png" class="bot-avatar" />
+              <div class="bubble">
+                👋 Hi there! How can I help you?
+                <div class="options">
+                  <button onclick="sendOption('Restaurant Menu')">
+                    🍽 Restaurant Menu
+                  </button>
+                  <button onclick="sendOption('Table Reservation')">
+                    🛎 Table Reservation
+                  </button>
+                  <button onclick="sendOption('Time & Location')">
+                    📍 Time & Location
+                  </button>
+                  <button onclick="sendOption('Contact Channel')">
+                    📞 Contact Channel
+                  </button>
+                  <button onclick="sendOption('Feedbacks')">
+                    📩 Feedbacks
+                  </button>
+                  <button onclick="sendOption('Payment')">💳 Payment</button>
+                  <button onclick="sendOption('Others')">🔎 Others</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Send a message..." />
+            <button onclick="handleUserInput()">➤</button>
+          </div>
+        </div>
+          </section>
+        </div>
+
+        <!-- Menu page-->
+        <div class="menu-page" id="menuPage">
+            
+          <!-- Header -->
+          <header class="menu-header">
+            <div class="menu-logo">
+              <img src="img/icon/logo.png" alt="Kokoria Logo" />
+            </div>
+            <h1>Menu</h1>
+            <div class="profile-icon">👤</div>
+          </header>
+          <br>
+
+          <!-- Banner -->
+          <div class="banner">
+            <img src="img/menu/banner.png" alt="Banner" />
+          </div>
+
+          <!-- Signature Section -->
+          <section class="section">
+            <h2>Signature</h2>
+            <div class="carousel">
+              <div class="card">
+                <img src="img/menu/image1.png" alt="Melted Cheese Chicken" />
+                <div class="info">
+                  <h3>
+                    Melted Cheese Chicken <span class="size-note">M/L</span>
+                  </h3>
+                  <span class="note">Medium / Large</span>
+                  <span class="price">$9.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image2.png" alt="Melted Cheese Pork Ribs" />
+                <div class="info">
+                  <h3>
+                    Melted Cheese Pork Ribs <span class="size-note">M/L</span>
+                  </h3>
+                  <span class="note">Medium / Large</span>
+                  <span class="price">$10.99</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Sauced Chicken Section -->
+          <section class="section">
+            <h2>Sauced Chicken</h2>
+            <div class="carousel">
+              <div class="card">
+                <img src="img/menu/image3.png" alt="Fried Chicken" />
+                <div class="info">
+                  <h3>Fried Chicken <span class="size-note">S/M/L</span></h3>
+                  <span class="note">Small / Medium / Large</span>
+                  <span class="price">$7.25</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image4.png" alt="Honey Sauce" />
+                <div class="info">
+                  <h3>Honey Sauce <span class="size-note">S/M/L</span></h3>
+                  <span class="note">Small / Medium / Large</span>
+                  <span class="price">$7.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image5.png" alt="Koko Sauce" />
+                <div class="info">
+                  <h3>Koko Sauce <span class="size-note">S/M/L</span></h3>
+                  <span class="note">Small / Medium / Large</span>
+                  <span class="price">$7.99</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Combo</h2>
+            <div class="carousel">
+              <div class="card">
+                <img src="img/menu/image6.png" alt="Combo A" />
+                <div class="info">
+                  <h3>Combo A <span class="size-note">S/M/L</span></h3>
+                  <span class="note">3-flavor chicken mix</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image8.png" alt="Combo B" />
+                <div class="info">
+                  <h3>Combo B <span class="size-note">S/M/L</span></h3>
+                  <span class="note">2-flavor chicken, mandu, chips</span>
+                  <span class="price">$11.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image13.png" alt="Combo C" />
+                <div class="info">
+                  <h3>Combo C <span class="size-note">S/M/L</span></h3>
+                  <span class="note">2-flavor chicken & sides</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Side Dishes Section -->
+          <section class="section">
+            <h2>Side Dishes</h2>
+            <div class="carousel">
+              <div class="card">
+                <img src="img/menu/image12.png" alt="Salad" />
+                <div class="info">
+                  <h3>Salad <span class="size-note">--</span></h3>
+                  <span class="note">Chicken / Tuna options</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image14.png" alt="Mandu" />
+                <div class="info">
+                  <h3>Mandu <span class="size-note">3 pcs</span></h3>
+                  <span class="note">Steamed dumplings (3 pcs)</span>
+                  <span class="price">$11.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/image14.png" alt="Cheese Ball" />
+                <div class="info">
+                  <h3>Cheese Ball <span class="size-note">--</span></h3>
+                  <span class="note">Crispy cheese balls</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Drinks Section -->
+          <section class="section">
+            <h2>Drinks</h2>
+            <div class="carousel">
+              <div class="card">
+                <img src="img/menu/soda.webp" alt="Soda" />
+                <div class="info">
+                  <h3>Soda <span class="size-note">--</span></h3>
+                  <span class="note">Mango/Peach/Strawberry/Blueberry</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/coke.png" alt="Soft Drinks" />
+                <div class="info">
+                  <h3>Soft Drinks <span class="size-note">--</span></h3>
+                  <span class="note">Coke/Fanta/7Up</span>
+                  <span class="price">$11.99</span>
+                </div>
+              </div>
+              <div class="card">
+                <img src="img/menu/soju.png" alt="Soju" />
+                <div class="info">
+                  <h3>Soju <span class="size-note">--</span></h3>
+                  <span class="note">Traditional / Fruit</span>
+                  <span class="price">$12.99</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Table reservation-->
+        <div class="reservation-page" id="reservationPage" style="display: none;">
+          <header class="menu-header">
+            <div class="menu-logo">
+              <img src="img/icon/logo.png" alt="Kokoria Logo" />
+            </div>
+            <h1>Reservation</h1>
+            <div class="profile-icon">👤</div>
+          </header>
+
+          <div class="reservation-form" style="padding: 20px;">
+            <h2 style="color: #ff6b35; text-align: center; font-weight: bold;">Table Reservation Form</h2>
+            <p style="text-align: center; font-size: 0.85rem; margin-bottom: 20px;">*Please fill out this form to confirm your reservation.</p>
+
+            <form id="bookingForm">
+              <label>Contact name</label>
+              <input type="text" name="name" required />
+
+              <label>Email address</label>
+              <input type="email" name="email" placeholder="Enter your email address" required />
+
+              <label>Phone number</label>
+              <input type="tel" name="phone" placeholder="Enter your phone number" required />
+
+              <div style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                  <label>Date of arrival</label>
+                  <input type="date" name="date" required />
+                </div>
+                <div style="flex: 1;">
+                  <label>Time</label>
+                  <input type="time" name="time" required />
+                </div>
+              </div>
+
+              <label>Number of guests</label>
+              <input type="number" name="guests" min="1" required />
+
+              <label>Additional message</label>
+              <textarea name="message" rows="3" placeholder="Enter text"></textarea>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button type="button" class="back-btn" onclick="goToHome2()">Back to Home</button>
+                <button type="submit" class="submit-btn" >Submit</button>
+              </div>
+            </form>
+    </div>
+
+  
+</div>
+
+        </div>
+
+    <script>
+      // Navigation Functions
+      function goToHome() {
+        const phoneInput = document.getElementById("phoneInput");
+        const phoneNumber = phoneInput.value.trim();
+
+        if (phoneNumber === "") {
+          alert("Please enter your phone number");
+          return;
+        }
+
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "block";
+        document.getElementById("chatPage").style.display = "none";
+        document.getElementById("menuPage").style.display = "none";
+        document.getElementById("bottomNav").style.display = "flex";
+        document.getElementById("reservationPage").style.display = "none";
+      }
+
+      function goToReservation() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("chatPage").style.display = "none";
+        document.getElementById("menuPage").style.display = "none";
+        document.getElementById("reservationPage").style.display = "block";
+      }
+
+      function gotoMenu() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("chatPage").style.display = "none";
+        document.getElementById("menuPage").style.display = "block";
+        document.getElementById("bottomNav").style.display = "flex";
+        document.getElementById("reservationPage").style.display = "none";
+      }
+
+      function goToHome2() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "block";
+        document.getElementById("chatPage").style.display = "none";
+        document.getElementById("menuPage").style.display = "none";
+        document.getElementById("bottomNav").style.display = "flex";
+        document.getElementById("reservationPage").style.display = "none";
+      }
+
+      function goToLogin() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+        document.getElementById("chatPage").style.display = "none";
+        document.getElementById("phoneInput").value = "";
+        document.getElementById("menuPage").style.display = "none";
+        document.getElementById("bottomNav").style.display = "none";
+        document.getElementById("reservationPage").style.display = "none";
+      }
+
+      function goToChat() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("chatPage").style.display = "flex";
+        document.getElementById("menuPage").style.display = "none";
+        document.getElementById("bottomNav").style.display = "flex";
+        document.getElementById("reservationPage").style.display = "none";
+      }
+
+      // Chat Functions
+      function appendMessage(text, sender = "bot") {
+        const chatBody = document.getElementById("chatBody");
+        const msg = document.createElement("div");
+        msg.className = sender === "user" ? "user-msg" : "bot-msg";
+
+        if (sender === "bot") {
+          const avatar = document.createElement("img");
+          avatar.src = "img/icon/logo.png";
+          avatar.className = "bot-avatar";
+          msg.appendChild(avatar);
+        }
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerText = text;
+
+        msg.appendChild(bubble);
+        chatBody.appendChild(msg);
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function appendMessageWithLink(text, linkAction) {
+        const chatBody = document.getElementById("chatBody");
+        const msg = document.createElement("div");
+        msg.className = "bot-msg";
+
+        const avatar = document.createElement("img");
+        avatar.src = "img/icon/logo.png";
+        avatar.className = "bot-avatar";
+        msg.appendChild(avatar);
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerHTML = text;
+
+        const links = bubble.querySelectorAll('.chat-link');
+        links.forEach(function(link) {
+          // Nếu đã có onclick trong HTML thì không cần gán lại
+          if (!link.onclick && linkAction) {
+            link.onclick = function () {
+              eval(linkAction);
+            };
+          }
+        });
+
+        msg.appendChild(bubble);
+        chatBody.appendChild(msg);
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      let waitingfeedback = false;
+
+      function sendOption(option) {
+        appendMessage(option, "user");
+
+        if (option === "Restaurant Menu") {
+          appendMessageWithLink(
+            'To see Restaurant Menu, click <span class="chat-link">Here</span>',
+            "gotoMenu()"
+          );
+        } else if (option === "Table Reservation") {
+          appendMessageWithLink(
+            'To make a Table Reservation, click <span class="chat-link">Here</span>',
+            "goToReservation()"
+          );
+        } else if (option === "Time & Location") {
+          appendMessageWithLink(
+            `<div style="display:flex;flex-direction:column;align-items:center;">
+              <button class="chat-choice-btn" style="background:none;border:none;padding:10px 30px;font-weight:bold;font-size:1rem;width:100%;" onclick="showTime('Time')">Time</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" style="background:none;border:none;padding:10px 30px;font-weight:bold;font-size:1rem;width:100%;" onclick="showLocation('Location')">Location</button>
+            </div>`,
+            ""
+          );          
+        } else if (option === "Contact Channel") {
+          appendMessageWithLink(
+            `<div style="line-height:1.7;">
+              To get in touch with us, please:<br>
+              • Fanpage on Facebook: <span style="color:#ff6b35;font-weight:bold;">Kokoria</span><br>
+              • Instagram: <span style="color:#ff6b35;font-weight:bold;">kokoria.sg</span><br>
+              Give us a call: You can also call us directly at 
+              <a href="tel:+845675890" style="color:#3498db;font-weight:bold;text-decoration:none;">+84 567 890</a>.
+            </div>`
+          );
+          appendMessageWithLink(
+            '<div>Feel free to ‘alo’ or tin-tin us!</div>'
+          );
+        } else if (option === "Feedbacks") {
+          appendMessage("💬💓 Your opinion matters! Just type it in the text box below and hit send");
+          waitingfeedback = true;
+        } else if (option === "Payment") {
+          appendMessageWithLink(
+            `<div style="display:flex;flex-direction:column;align-items:center;">
+              <button class="chat-choice-btn" onclick="showPaymentMethod('Payment Method')">Payment Method</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" onclick="showExtraCharges('Extra charges')">Extra charges</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" onclick="showTaxes('Taxes')">Taxes</button>
+            </div>`,
+            ""
+          );
+        } else {
+          appendMessageWithLink(
+            `<div style="display:flex;flex-direction:column;align-items:center;">
+              <button class="chat-choice-btn" onclick="showParking('Parking Area')">Parking Area</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" onclick="showDelivery('Delivery Options')">Delivery Options</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" onclick="showParty('Party Decoration')">Party Decoration</button>
+              <hr style="width:80%;margin:0;">
+              <button class="chat-choice-btn" onclick="showMore('More')">More</button>
+            </div>`,
+            ""
+          );
+        }
+      }
+
+
+
+      function handleUserInput() { 
+        const input = document.getElementById("userInput");
+        const value = input.value.trim();
+        if (!value) return;
+
+        appendMessage(value, "user");
+        if (waitingfeedback) {
+          appendMessage("Your feedback is our secret recipe! 🙌🧡");
+          appendMessage("Thank you for sharing. 😊");
+          waitingfeedback = false;
+        } else if (value.toLowerCase().includes("menu")) {
+          appendMessage("You can find the Restaurant Menu here.");
+        } else if (value.toLowerCase().includes("time")) {
+          appendMessage("Kokoria is open everyday from 10:30 AM to 9:30 PM");
+        } else if (value.toLowerCase().includes("location")) {
+          appendMessage(
+            "Location:\n• 207/33 3/2 Street\n• 573/2 Su Van Hanh\n• 106 Le Van Duyet"
+          );
+        } else {
+          appendMessage(
+            "I'm not sure how to help with that, please choose an option."
+          );
+        }
+
+        input.value = "";
+      }
+      
+      function showTime(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "🕒 Kokoria is open everyday from 10:30 AM to 9:30 PM.<br>🙌 Hope to see you soon!",
+          ""
+        );
+      }
+
+      function showLocation(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "📍 You can find us at these locations:<br>🏡 207/33 3/2 Street, District 10<br>🏡 573/2 Su Van Hanh, District 10<br>🏡 106 Le Van Duyet, Binh Thanh District",
+          ""
+        );
+      }
+
+      function showPaymentMethod(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "We accept <b>cash</b>, <b>e-wallet</b>, and <b>bank transfer 😁</b>",
+          ""
+        );
+      }
+
+      function showExtraCharges(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "There are no extra charges.<br>Nothing surprised, nothing hidden! 😃",
+          ""
+        );
+      }
+
+      function showTaxes(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "Thanks for asking. <b>A 5% VAT</b> will be included in your bill in line with tax policies.",
+          ""
+        );
+      }
+
+      function showParking(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "Yes, we have a motorbike parking area right in front! 😁",
+          ""
+        );
+      }
+
+      function showDelivery(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "You can find us on <b>ShopeeFood</b> or <b>GrabFood</b> for quick delivery."
+        );
+        appendMessageWithLink(
+          "📱 Just one click away!"
+        );
+      }
+
+      function showParty(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "Call us to arrange party decorations through this number <a href='tel:+845675890' style='color:#3498db;font-weight:bold;text-decoration:none;'>+84 567 890</a>.",
+          ""
+        );
+        appendMessageWithLink(
+          "🎉 We'd love to help!"
+        );
+      }
+
+      function showMore(optionText) {
+        appendMessage(optionText, "user");
+        appendMessageWithLink(
+          "For more details, contact us through the number <a href='tel:+845675890' style='color:#3498db;font-weight:bold;text-decoration:none;'>+84 567 890</a>.",
+          ""
+        );
+        appendMessageWithLink(
+          "🧡 We're here for you.",
+          ""
+        );
+      }
+      // Add enter key support for phone input
+      document
+        .getElementById("phoneInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            goToHome();
+          }
+        });
+
+      // Add enter key support for chat input
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatInput = document.getElementById("userInput");
+        if (chatInput) {
+          chatInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              handleUserInput();
+            }
+          });
+        }
+      });
+      
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("bookingForm");
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const reservation = {};
+            data.forEach((value, key) => {
+              reservation[key] = value;
+            });
+
+            console.log("Reservation submitted:", reservation);
+            alert("🎉 Reservation submitted successfully!");
+            goToHome2(); // quay lại trang chủ
+          });
+        }
+      });
+      
+    </script>
+  </body>
+</html>
